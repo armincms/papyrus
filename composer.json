@@ -1,0 +1,30 @@
+{
+    "name": "armincms/papyrus",
+    "description": "Foundation of the `Armincms` page manager.",
+    "keywords": [
+        "armincms"
+    ],
+    "license": "ARMINCMS",
+    "require": {
+        "php": ">=7.1.0",
+        "armincms/markable": "~0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Armincms\\Papyrus\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Armincms\\Papyrus\\ServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true, 
+    "version": "1.0.0"
+}
