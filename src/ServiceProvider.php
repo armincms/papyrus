@@ -2,6 +2,7 @@
 
 namespace Armincms\Papyrus;
 
+use Zareismail\Gutenberg\Gutenberg;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;   
 
@@ -14,7 +15,11 @@ class ServiceProvider extends LaravelServiceProvider implements DeferrableProvid
      */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');  
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations'); 
+        
+        Gutenberg::templates([
+            \Armincms\Papyrus\Gutenberg\Templates\SinglePage::class,
+        ]); 
     }
 
     /**
@@ -35,7 +40,8 @@ class ServiceProvider extends LaravelServiceProvider implements DeferrableProvid
     public function when()
     {
         return [
-            \Illuminate\Console\Events\ArtisanStarting::class
+            \Illuminate\Console\Events\ArtisanStarting::class,
+            \Laravel\Nova\Events\ServingNova::class,
         ];
     } 
 }
