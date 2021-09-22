@@ -4,7 +4,7 @@
     "keywords": [
         "armincms"
     ],
-    "license": "ARMINCMS",
+    "license": "proprietary",
     "require": {
         "php": ">=7.1.0",
         "armincms/markable": "~0.1",
