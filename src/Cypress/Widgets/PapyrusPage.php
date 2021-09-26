@@ -69,7 +69,9 @@ abstract class PapyrusPage extends Widget
         return [
             Select::make(__('Display Page Template'), 'config->template')
                 ->options(static::availableTemplates(SinglePage::class))
-                ->displayUsingLabels(),
+                ->displayUsingLabels()
+                ->required()
+                ->rules('required'),
         ];
     }
 }
