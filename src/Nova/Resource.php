@@ -48,6 +48,10 @@ abstract class Resource extends NovaResource
     {
         return [
             ID::make(__('Page ID'), 'id')->sortable(),
+            
+            $this->when($request->isResourceDetailRequest(), function() {
+                return $this->resourceUrls();
+            }),
 
             Targomaan::make([ 
                 Select::make(__('Page Status'), 'marked_as')
