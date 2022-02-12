@@ -2,17 +2,11 @@
 
 namespace Armincms\Papyrus\Cypress\Widgets;
 
-use Armincms\Papyrus\Gutenberg\Templates\SinglePage;
-use Laravel\Nova\Fields\Select;
-use Zareismail\Cypress\Widget;  
-use Zareismail\Cypress\Http\Requests\CypressRequest;
-use Zareismail\Gutenberg\Gutenberg;
-use Zareismail\Gutenberg\HasTemplate;
+use Zareismail\Cypress\Http\Requests\CypressRequest; 
+use Zareismail\Gutenberg\GutenbergWidget;
 
-abstract class PapyrusPage extends Widget
-{       
-    use HasTemplate;
-
+abstract class PapyrusPage extends GutenbergWidget
+{        
     /**
      * Indicates if the widget should be shown on the component page.
      *
@@ -29,21 +23,11 @@ abstract class PapyrusPage extends Widget
      */
     public function boot(CypressRequest $request, $layout)
     {   
-        $this->bootstrapTemplate($request, $layout);
+        parent::boot($request, $layout);
 
         $this->withMeta([
             'resource' => $request->resolveFragment()->metaValue('resource')
         ]);
-    }
-
-    /**
-     * Get the template id.
-     * 
-     * @return integer
-     */
-    public function getTemplateId(): int
-    {
-        return $this->metaValue('template');
     } 
 
     /**
@@ -51,27 +35,20 @@ abstract class PapyrusPage extends Widget
      * 
      * @return array
      */
-    public function serializeForTemplate(): array
-    {
-        $request = $this->getRequest();
-
-        return $request->resolveFragment()->metaValue('resource')->serializeForWidget($request);
+    public function serializeForDisplay(): array
+    { 
+        return $this->metaValue('resource')->serializeForWidget($this->getRequest());
     }
 
     /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * Query related dispaly templates.
+     * 
+     * @param  $request 
+     * @param  $query   
+     * @return          
      */
-    public static function fields($request)
+    public static function relatableTemplates($request, $query)
     {
-        return [
-            Select::make(__('Display Page Template'), 'config->template')
-                ->options(static::availableTemplates(SinglePage::class))
-                ->displayUsingLabels()
-                ->required()
-                ->rules('required'),
-        ];
-    }
+        $query->handledBy(\Armincms\Papyrus\Gutenberg\Templates\SinglePage::class);
+    } 
 }
