@@ -6,7 +6,14 @@ use Zareismail\Gutenberg\Template;
 use Zareismail\Gutenberg\Variable;
 
 class SinglePage extends Template 
-{       
+{        
+    /**
+     * The logical group associated with the template.
+     *
+     * @var string
+     */
+    public static $group = 'Page';
+
     /**
      * Register the given variables.
      * 

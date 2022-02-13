@@ -8,6 +8,13 @@ use Zareismail\Gutenberg\GutenbergWidget;
 abstract class PapyrusPage extends GutenbergWidget
 {        
     /**
+     * The logical group associated with the template.
+     *
+     * @var string
+     */
+    public static $group = 'Page';
+    
+    /**
      * Indicates if the widget should be shown on the component page.
      *
      * @var \Closure|bool
