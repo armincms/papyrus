@@ -1,7 +1,7 @@
 <?php
 
 namespace Armincms\Papyrus\Models;
- 
+
 use Armincms\Contract\Concerns\Authorizable;
 use Armincms\Contract\Concerns\InteractsWithFragments;
 use Armincms\Contract\Concerns\InteractsWithMedia;
@@ -15,12 +15,11 @@ use Armincms\Contract\Contracts\HasMedia;
 use Armincms\Contract\Contracts\HasMeta;
 use Armincms\Markable\Archivable;
 use Armincms\Targomaan\Concerns\InteractsWithTargomaan;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model; 
-use Illuminate\Database\Eloquent\SoftDeletes; 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, HasMeta
-{ 
+{
     use Archivable;
     use Authorizable;
     use InteractsWithFragments;
@@ -45,7 +44,7 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
      *
      * @var string[]
      */
-    protected $fillable = [ 
+    protected $fillable = [
     ];
 
     /**
@@ -53,7 +52,7 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
      *
      * @var array
      */
-    protected $hidden = [ 
+    protected $hidden = [
     ];
 
     /**
@@ -61,7 +60,7 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
      *
      * @var array
      */
-    protected $casts = [ 
+    protected $casts = [
     ];
 
     /**
@@ -88,10 +87,10 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
 
     /**
      * Query where has the gicen resoure tpes.
-     * 
-     * @param  \Illuminate\Database\Eloquent\Builder $query     
-     * @param  array  $resources 
-     * @return \Illuminate\Database\Eloquent\Builder            
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array  $resources
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeResources($query, array $resources)
     {
@@ -100,21 +99,21 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
 
     /**
      * Get scoped resource name.
-     * 
+     *
      * @return string
      */
     abstract public static function resourceName(): string;
 
     /**
      * Get the targomaan driver.
-     * 
+     *
      * @return string
      */
-    public function translator() : string
+    public function translator(): string
     {
         return 'sequential';
     }
-    
+
     /**
      * Serialize the model for pass into the client view.
      *
@@ -122,12 +121,12 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
      * @return array
      */
     public function serializeForWidget($request): array
-    { 
+    {
         return array_merge($this->toArray(), $this->getFirstMediasWithConversions()->toArray(), [
             'creation_date' => $this->created_at->format('Y F d'),
-            'last_update'   => $this->updated_at->format('Y F d'),
-            'author'=> $this->auth->fullname(), 
-            'url'   => $this->getUrl($request),
+            'last_update' => $this->updated_at->format('Y F d'),
+            'author' => $this->auth->fullname(),
+            'url' => $this->getUrl($request),
         ]);
     }
 }

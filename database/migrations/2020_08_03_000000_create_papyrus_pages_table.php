@@ -16,12 +16,12 @@ class CreatePapyrusPagesTable extends Migration
         Schema::create('papyrus_pages', function (Blueprint $table) {
             $table->id();
             $table->string('resource');
-            $table->multilingualContent(); 
-            $table->markable();    
-            $table->resourceHits(); 
-            $table->multilingualRefer(); 
+            $table->multilingualContent();
+            $table->markable();
+            $table->resourceHits();
+            $table->multilingualRefer();
             $table->timestamps();
-            $table->softDeletes(); 
+            $table->softDeletes();
         });
     }
 

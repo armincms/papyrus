@@ -1,12 +1,12 @@
 <?php
 
-namespace Armincms\Papyrus\Gutenberg\Templates; 
+namespace Armincms\Papyrus\Gutenberg\Templates;
 
-use Zareismail\Gutenberg\Template; 
+use Zareismail\Gutenberg\Template;
 use Zareismail\Gutenberg\Variable;
 
-class SinglePage extends Template 
-{        
+class SinglePage extends Template
+{
     /**
      * The logical group associated with the template.
      *
@@ -16,12 +16,12 @@ class SinglePage extends Template
 
     /**
      * Register the given variables.
-     * 
+     *
      * @return array
      */
     public static function variables(): array
     {
-        return [ 
+        return [
             Variable::make('id', __('Page Id')),
 
             Variable::make('name', __('Page Name')),
@@ -42,7 +42,7 @@ class SinglePage extends Template
 
             Variable::make('image.templateName', __(
                 'Image with the required template (example: image.common-main)'
-            ))
+            )),
         ];
-    } 
+    }
 }

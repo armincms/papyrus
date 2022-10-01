@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\Hidden;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -108,13 +107,13 @@ abstract class Resource extends NovaResource
             Badge::make(__('Page Status'), 'marked_as')
                 ->map([
                     $model->getPublishValue() => 'success',
-                    $model->getDraftValue()   => 'info',
+                    $model->getDraftValue() => 'info',
                     $model->getArchiveValue() => 'warning',
                     $model->getPendingValue() => 'danger',
                 ])
                 ->labels([
                     $model->getPublishValue() => __($model->getPublishValue()),
-                    $model->getDraftValue()   => __($model->getDraftValue()),
+                    $model->getDraftValue() => __($model->getDraftValue()),
                     $model->getArchiveValue() => __($model->getArchiveValue()),
                     $model->getPendingValue() => __($model->getPendingValue()),
                 ]),
@@ -123,9 +122,9 @@ abstract class Resource extends NovaResource
 
     /**
      * Get the page statuses.
-     * 
-     * @param  Request $request 
-     * @return array           
+     *
+     * @param  Request  $request
+     * @return array
      */
     public function statuses(Request $request)
     {
