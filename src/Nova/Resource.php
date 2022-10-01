@@ -15,10 +15,10 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Laravel\Nova\Resource as NovaResource; 
+use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
-{ 
+{
     use Authorizable;
     use Fields;
 
@@ -35,7 +35,7 @@ abstract class Resource extends NovaResource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -48,12 +48,12 @@ abstract class Resource extends NovaResource
     {
         return [
             ID::make(__('Page ID'), 'id')->sortable(),
-            
-            $this->when($request->isResourceDetailRequest(), function() {
+
+            $this->when($request->isResourceDetailRequest(), function () {
                 return $this->resourceUrls();
             }),
 
-            Targomaan::make([ 
+            Targomaan::make([
                 Select::make(__('Page Status'), 'marked_as')
                     ->options($this->statuses($request))
                     ->required()
@@ -65,7 +65,7 @@ abstract class Resource extends NovaResource
                     ->rules('required'),
 
                 Text::make(__('Page Slug'), 'slug')
-                    ->nullable(), 
+                    ->nullable(),
 
                 $this->resourceImage(__('Page Featured Image')),
 
@@ -78,7 +78,7 @@ abstract class Resource extends NovaResource
                     ->default(get_called_class())
                     ->onlyOnForms()
                     ->hideWhenUpdating(),
-            ]), 
+            ]),
 
             Panel::make(__('Advanced Page Configurations'), [
                 Targomaan::make([
@@ -99,9 +99,9 @@ abstract class Resource extends NovaResource
         $model = static::newModel();
 
         return [
-            ID::make(__('Page ID'), 'id')->sortable(), 
+            ID::make(__('Page ID'), 'id')->sortable(),
 
-            Text::make(__('Page Name'), 'name'), 
+            Text::make(__('Page Name'), 'name'),
 
             $this->resourceUrls(),
 
@@ -134,21 +134,21 @@ abstract class Resource extends NovaResource
         return $this->filter([
             $model->getDraftValue() => __('Store page as draft'),
 
-            $this->mergeWhen($request->user()->can('publish', $model), function() use ($model) {
+            $this->mergeWhen($request->user()->can('publish', $model), function () use ($model) {
                 return [
                     $model->getPublishValue() => __('Publish the page'),
                 ];
-            }, function() {
+            }, function () use ($model) {
                 return [
                     $model->getPendingValue() => __('Request page publishing'),
                 ];
             }),
 
-            $this->mergeWhen($request->user()->can('archive', $model), function() use ($model) {
+            $this->mergeWhen($request->user()->can('archive', $model), function () use ($model) {
                 return [
                     $model->getArchiveValue() => __('Archive the page'),
                 ];
-            }), 
+            }),
         ]);
     }
 

@@ -8,7 +8,7 @@
     "require": {
         "php": ">=7.1.0",
         "armincms/markable": "^1.0",
-        "armincms/nova-targomaan": "~1.0"
+        "armincms/nova-targomaan": "~2.0"
     },
     "autoload": {
         "psr-4": {
