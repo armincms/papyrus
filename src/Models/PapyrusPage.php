@@ -89,7 +89,6 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
      * Query where has the gicen resoure tpes.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  array  $resources
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeResources($query, array $resources)
@@ -99,15 +98,11 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
 
     /**
      * Get scoped resource name.
-     *
-     * @return string
      */
     abstract public static function resourceName(): string;
 
     /**
      * Get the targomaan driver.
-     *
-     * @return string
      */
     public function translator(): string
     {
@@ -118,7 +113,6 @@ abstract class PapyrusPage extends Model implements Authenticatable, HasMedia, H
      * Serialize the model for pass into the client view.
      *
      * @param Zareismail\Cypress\Request\CypressRequest
-     * @return array
      */
     public function serializeForWidget($request): array
     {

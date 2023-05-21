@@ -24,7 +24,6 @@ abstract class PapyrusPage extends GutenbergWidget
     /**
      * Bootstrap the resource for the given request.
      *
-     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request
      * @param  \Zareismail\Cypress\Layout  $layout
      * @return void
      */
@@ -39,8 +38,6 @@ abstract class PapyrusPage extends GutenbergWidget
 
     /**
      * Serialize the widget fro template.
-     *
-     * @return array
      */
     public function serializeForDisplay(): array
     {
@@ -49,10 +46,6 @@ abstract class PapyrusPage extends GutenbergWidget
 
     /**
      * Query related dispaly templates.
-     *
-     * @param    $request
-     * @param    $query
-     * @return
      */
     public static function relatableTemplates($request, $query)
     {

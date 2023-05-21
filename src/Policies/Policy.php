@@ -14,7 +14,6 @@ abstract class Policy extends ArminPolicy
     /**
      * Determine whether the user can publish the page.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $admin
      * @return mixed
      */
@@ -25,7 +24,6 @@ abstract class Policy extends ArminPolicy
     /**
      * Determine whether the user can archive the page.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $admin
      * @return mixed
      */
