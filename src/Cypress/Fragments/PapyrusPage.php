@@ -3,10 +3,11 @@
 namespace Armincms\Papyrus\Cypress\Fragments;
 
 use Armincms\Contract\Concerns\InteractsWithModel;
+use Armincms\Contract\Contracts\Resource;
 use Zareismail\Cypress\Contracts\Resolvable;
 use Zareismail\Cypress\Fragment;
 
-abstract class PapyrusPage extends Fragment implements Resolvable
+abstract class PapyrusPage extends Fragment implements Resolvable, Resource
 {
     use InteractsWithModel;
 
